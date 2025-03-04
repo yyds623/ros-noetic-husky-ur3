@@ -67,8 +67,9 @@ source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python fg.
 ```bash
 rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
 ```
+![查看机械臂的关节角度](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)
 
-[![复合移动机械臂在gazebo仿真下的展示](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)]
+
 ```bash
 
 # 夹爪打开
