@@ -3,7 +3,8 @@
 husky-UR3
 =========
 
-  实现了对移动单臂机器人的Gzebo的仿真模拟物体搬运的Demo演示，并实现利用DWA+RRT结合算法，对路径进行规划与底盘建图定位控制。考虑到可以使用视觉信息进行物体的识别与抓取但是由于时间限制并未实现，之后有时间再更新吧。-->3<--
+  实现了对移动单臂机器人的Gzebo物体搬运仿真模拟Demo演示，并实现利用DWA+RRT结合算法，对路径进行规划与底盘建图定位控制。考虑到可以使用视觉信息进行物体的识别与抓取但是由于时间原因并未实现，之后有时间再更新吧。-->3<--
+[![复合移动机械臂在gazebo仿真下的展示](https://i0.hdslb.com/bfs/archive/c53ce528a40641a3aca32c366f7bb01fc716764f.jpg@672w_378h_1c.avif)](https://www.bilibili.com/video/BV1RAyTYFEPP/?share_source=copy_web&vd_source=4194ae4a17aa95105a0ab346c7c66fbb)
 
 ### 1、安装ros-noetic
 
@@ -34,7 +35,6 @@ cd ~/ros_ws && catkin_make   # 编译
 
 ### 3、启动gazebo
 
-[![复合移动机械臂在gazebo仿真下的展示](https://i0.hdslb.com/bfs/archive/c53ce528a40641a3aca32c366f7bb01fc716764f.jpg@672w_378h_1c.avif)](https://www.bilibili.com/video/BV1RAyTYFEPP/?share_source=copy_web&vd_source=4194ae4a17aa95105a0ab346c7c66fbb)
 
 ```bash
 
