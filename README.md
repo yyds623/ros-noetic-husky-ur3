@@ -57,6 +57,7 @@ roslaunch husky_ur3_navigation husky_ur3_in_HRI_lab_amcl.launch  #定位
 ```bash
 #新开一个终端
 source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python nf.py   #导航时间与机械臂到 front_view 的时间  并导航 根据提示输入相应位置的数字
+#新开一个终端
 source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python fg.py   #计算底盘路径长度
 ```
 ------------------------------------------
@@ -66,7 +67,8 @@ source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python fg.
 ```bash
 rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
 ```
-https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a
+
+[![复合移动机械臂在gazebo仿真下的展示](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)]
 ```bash
 
 # 夹爪打开
