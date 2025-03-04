@@ -74,11 +74,16 @@ rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.0"
 rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.65"
 ```
 
+```bash
+rosrun rqt_reconfigure rqt_reconfigure  #调整参数
+```
+
+![reconfigure 调整参数](https://github.com/user-attachments/assets/4b61d531-fe5b-4327-ae23-0a44e94fd983)
+
+
 
 ```bash
 rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
 ```
 ![查看机械臂的关节角度](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)
-
-
-------------------------------------------
+```
