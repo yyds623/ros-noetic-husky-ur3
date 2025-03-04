@@ -1,0 +1,22 @@
+controller_list:
+  - name: ur3_mainpulator_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+  - name: gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - wrist_3_joint
+      - rh_l1
+      - rh_l2
+      - rh_p12_rn
+      - rh_r2

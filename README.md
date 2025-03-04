@@ -1,0 +1,69 @@
+
+
+husky-UR3
+=========
+
+实现了对移动单臂机器人的Gzebo的仿真模拟，并实现利用DWA+RRT结合算法，对路径进行规划与底盘建图定位控制。
+
+### 1、安装ros-noetic
+
+------------------------------------------
+首先安装ros-noetic系统，按照以下命令配置即可
+
+First, install the ros-noetic system and configure it according to the following commands.
+```bash
+wget http://fishros.com/install -O fishros && . fishros  #ros one-click installation
+```
+------------------------------------------
+### 2、安装代码库
+
+
+------------------------------------------
+
+```bash
+mkdir -p ~/ros_ws/src  # Creating a ros workspace
+cd ~/ros_ws/src/ && git clone --recurse-submodules https://github.com/yyds623/husk-ur3.git  #克隆代码仓
+
+rosdepc install --from-path src --ignore-src -r -y  #安装基本依赖项
+cd ~/ros_ws && catkin_make   # 编译
+```
+------------------------------------------
+
+### 3、启动gazebo
+
+[![复合移动机械臂在gazebo仿真下的展示](https://i0.hdslb.com/bfs/archive/c53ce528a40641a3aca32c366f7bb01fc716764f.jpg@672w_378h_1c.avif)](https://www.bilibili.com/video/BV1RAyTYFEPP/?share_source=copy_web&vd_source=4194ae4a17aa95105a0ab346c7c66fbb)
+
+```bash
+
+roslaunch husky_ur3_gazebo husky_ur3_HRI_lab.launch  #启动gazebo
+
+
+roslaunch husky_ur3_gripper_moveit_config Omni_control.launch    # 启动 MoveIt & RViz  运动
+
+
+roslaunch husky_ur3_navigation husky_ur3_in_HRI_lab_amcl.launch  #定位
+```
+------------------------------------------
+
+
+
+### 4、夹爪控制
+
+
+```bash
+
+# 夹爪打开
+rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.0"
+
+# 夹爪关闭
+rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.65"
+
+```
+------------------------------------------
+### 5、执行底盘路径点导航与机械臂运动及其夹爪控制
+```bash
+roscd husky_ur3_navigation/src
+python nf.py              #导航时间与机械臂到 front_view 的时间  并导航 根据提示输入相应位置的数字
+python fg.py  #计算路径长度
+```
+------------------------------------------

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="laser_enabled" default="true"/>
+  <arg name="camera_h_enabled" default="true"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find husky_ur3_gazebo)/worlds/dai.world"/> <!-- 原版HRI_lab.world-->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="cafe_table_to_ur3_base" args="9.0327 1.12309 2-0.096505 0 1.57 1.57 /map /cafe_table_link" /> -->
+
+  <!---Y、-P 和 -R 参数分别指定模型绕 Y、P、R 轴的旋转角度-->
+  <!-- <node name="table" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/cafe_table/model.sdf -sdf -model table_a -x 9.0327 -y 1.12309 -z -0.096505 -Y 0.0" /> 
+    
+  <node name="long_box" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/long_block.urdf -urdf -model long_box -x 9.851738 -y 0.889734 -z 0.889734 -Y 2.2" />
+  
+  <node name="cylinder" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/cylinder.urdf -urdf -model cylinder -x 8.995916 -y 1.275224-z 0.851738" />
+  <node name="box" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/block.urdf -urdf -model box -x -0.2 -y 0.5 -z 1.2 -Y 2.2" /> -->
+
+
+  <!-- <node name="table" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/cafe_table/model.sdf -sdf -model table -x 9.0327 -y 1.12309 -z -0.096505 -Y 1.5708" /> -->
+  
+  
+  <!--<node name="coke" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/coke_can/model.sdf -sdf -model coke -x -0.5 -y 0.5 -z 1.1 -R 1.57 -Y -0.3665" />-->
+  <!-- <node name="dropbox" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/dropbox.urdf -urdf -model dropbox -x 0.6 -y 0.3 -z 0" /> -->
+  <!-- <node name="banana" pkg="gazebo_ros" type="spawn_model" args="-file $(find gjt_ur_gazebo)/urdf/banana.urdf -urdf -model banana -x 0.15 -y 0.5 -z 1.1 -R 1.57 -Y 2.2" /> -->
+
+        <!-- <pose>9.0327 1.12309 -0.096505 0 -0 0</pose> -->
+  <!-- <include file="$(find husky_ur3_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="camera_h_enabled" value="$(arg camera_h_enabled)"/>
+  </include> -->
+
+</launch>

@@ -1,0 +1,20 @@
+controller_list:
+  - name: fake_ur3_manipulator_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+  - name: fake_endeffector_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - rh_l1
+      - rh_l2
+      - rh_p12_rn
+      - rh_r2
+initial:  # Define initial robot poses per group
+  - group: ur3_manipulator
+    pose: up

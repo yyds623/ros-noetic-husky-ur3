@@ -1,0 +1,92 @@
+<launch>
+
+
+
+  <!-- specify the planning pipeline -->
+  <arg name="pipeline" default="ompl" />
+
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- Allow user to specify database location -->
+  <arg name="db_path" default="$(find husky_ur3_gripper_moveit_config)/default_warehouse_mongo_db" />
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+
+  <arg name="marker_frame_id"     default="/base_link"/>
+  <arg name="user_marker_size"	  default="12.3"/> <!--二维码的大小 -->
+   
+   
+<!-- husky 카메라의 ar마커 인식부분   <！- husky摄影机的ar标记识别部分->  -->
+  <include file="$(find ar_track_alvar)/launch/pr2_indiv_h_d435.launch">
+    <arg name="marker_size" value="$(arg user_marker_size)" />
+    <arg name="max_new_marker_error" value="0.08" />
+    <arg name="max_track_error" value="0.2" />
+    <arg name="h_cam_image_topic" value="/h_d435/rgb/h_image_raw" />
+    <arg name="h_cam_info_topic" value="/h_d435/rgb/camera_info" />
+    <arg name="output_frame" value="$(arg marker_frame_id)" />
+    
+  </include> 
+
+<!-- gripper 카메라의 ar마커 인식부분  <！- gripper摄影机的ar标记识别部分-> -->
+  <include file="$(find ar_track_alvar)/launch/pr2_indiv_g_d435.launch">
+    <arg name="marker_size" value="$(arg user_marker_size)" />
+    <arg name="max_new_marker_error" value="0.08" />
+    <arg name="max_track_error" value="0.2" />
+    <arg name="g_cam_image_topic" value="/g_d435/rgb/g_image_raw" />
+    <arg name="g_cam_info_topic" value="/g_d435/rgb/camera_info" />
+    <arg name="output_frame" value="$(arg marker_frame_id)" />    
+  </include> 
+
+  <!--
+  By default, hide joint_state_publisher's GUI
+
+  MoveIt!'s "demo" mode replaces the real robot driver with the joint_state_publisher.
+  The latter one maintains and publishes the current joint configuration of the simulated robot.
+  It also provides a GUI to move the simulated robot around "manually".
+  This corresponds to moving around the real robot without the use of MoveIt.
+  -->
+
+
+  <!-- We do not have a robot connected, so publish fake joint states -->
+
+  <!-- 210928: Universal Robot github에서 제공하는 패키지에 gazebo 시뮬레이션시 실행되지 않는 부분이라 주석 처리 -->
+  <!--210928:通用机器人github提供的软件包中没有在gazebo模拟时运行的部分，因此进行注释-->
+  <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/> 
+    <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
+  </node-->
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server 加载URDF、SRDF等。param服务器上的yaml配置文件 -->
+  
+  <include file="$(find husky_ur3_gripper_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <!-- If needed, broadcast static tf for robot root    <!-如果需要，为机器人根广播静态TF-》
+
+
+<!-快跑！无需轨迹执行即可执行（默认情况下我们没有配置控制器）-》-->
+  
+
+  <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find husky_ur3_gripper_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="pipeline" value="$(arg pipeline)"/>
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find husky_ur3_gripper_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find husky_ur3_gripper_moveit_config)/launch/Omni_control.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- If database loading was enabled, start mongodb as well -->
+  <include file="$(find husky_ur3_gripper_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>
+
+</launch>

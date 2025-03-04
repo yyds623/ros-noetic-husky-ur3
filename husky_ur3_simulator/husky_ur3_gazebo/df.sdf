@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="camera_model">
+    <static>true</static>
+
+    <!-- 相机链接 -->
+    <link name="camera_link">
+      <visual name="visual_camera">
+        <!-- 相机可视化，可以根据需要设置 -->
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!-- 这里使用的是简单的球体来表示相机 -->
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <!-- 相机颜色，可以根据需要设置 -->
+          <color rgba="0 0 1 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <!-- 相机连接到其他物体的关节 -->
+    <joint name="camera_joint" type="fixed">
+      <!-- 将相机链接到世界坐标系中 -->
+      <parent>world</parent>
+      <child>camera_link</child>
+      <!-- 相机链接的原点和姿态 -->
+      <origin xyz="0 0 1" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gazebo插件配置 -->
+    <gazebo reference="camera_link">
+      <sensor name="camera_sensor" type="camera">
+        <!-- 相机参数配置，如视场角、分辨率等 -->
+        <camera>
+          <horizontal_fov>1.047198</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <!-- 相机插件配置，这里可以根据需要设置 -->
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>rrbot/camera1</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </model>
+</sdf>

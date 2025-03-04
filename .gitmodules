@@ -1,0 +1,21 @@
+[submodule "ROBOTIS-Framework"]
+	path = ROBOTIS-Framework
+	url = https://github.com/ROBOTIS-GIT/ROBOTIS-Framework.git
+[submodule "gazebo-pkgs"]
+	path = gazebo-pkgs
+	url = https://github.com/JenniferBuehler/gazebo-pkgs.git
+	branch = noetic
+[submodule "rrt_star_global_planner"]
+	path = rrt_star_global_planner
+	url = https://github.com/li-huanhuan/rrt_star_global_planner.git
+[submodule "ar_track_alvar"]
+	path = ar_track_alvar
+	url = https://github.com/QualiaT/ar_track_alvar.git
+	branch = noetic-devel
+# [submodule "husky_ur3_simulator"]
+# 	path = husky_ur3_simulator
+# 	url = https://github.com/QualiaT/husky_ur3_simulator.git
+# 	branch = noetic-devel
+[submodule "ROBOTIS-Framework-msgs"]
+	path = ROBOTIS-Framework-msgs
+	url = https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
