@@ -64,11 +64,6 @@ source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python fg.
 
 ### 5、其他小Tips
 
-```bash
-rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
-```
-![查看机械臂的关节角度](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)
-
 
 ```bash
 
@@ -78,4 +73,12 @@ rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.0"
 # 夹爪关闭
 rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.65"
 ```
+
+
+```bash
+rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
+```
+![查看机械臂的关节角度](https://github.com/user-attachments/assets/aaf9debe-05ed-4142-81c9-dce46c95810a)
+
+
 ------------------------------------------
