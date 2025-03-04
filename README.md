@@ -38,21 +38,32 @@ cd ~/ros_ws && catkin_make   # 编译
 
 ```bash
 
+#新开一个终端
+source ~/ros_ws/devel/setup.bash 
+
 roslaunch husky_ur3_gazebo husky_ur3_HRI_lab.launch  #启动gazebo
 
 
+#新开一个终端
+source ~/ros_ws/devel/setup.bash 
 roslaunch husky_ur3_gripper_moveit_config Omni_control.launch    # 启动 MoveIt & RViz  运动
 
 
+#新开一个终端
+source ~/ros_ws/devel/setup.bash 
 roslaunch husky_ur3_navigation husky_ur3_in_HRI_lab_amcl.launch  #定位
 ```
 ------------------------------------------
+### 4、执行底盘路径点导航与机械臂运动及其夹爪控制
+```bash
+#新开一个终端
+source ~/ros_ws/devel/setup.bash 
+roscd husky_ur3_navigation/src && python nf.py              #导航时间与机械臂到 front_view 的时间  并导航 根据提示输入相应位置的数字
+python fg.py  #计算底盘路径长度
+```
+------------------------------------------
 
-
-
-### 4、夹爪控制
-
-
+### 5、其他小Tips
 ```bash
 
 # 夹爪打开
@@ -60,13 +71,5 @@ rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.0"
 
 # 夹爪关闭
 rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.65"
-
-```
-------------------------------------------
-### 5、执行底盘路径点导航与机械臂运动及其夹爪控制
-```bash
-roscd husky_ur3_navigation/src
-python nf.py              #导航时间与机械臂到 front_view 的时间  并导航 根据提示输入相应位置的数字
-python fg.py  #计算路径长度
 ```
 ------------------------------------------
