@@ -24,6 +24,9 @@ wget http://fishros.com/install -O fishros && . fishros  #ros one-click installa
 mkdir -p ~/ros_ws/src  # Creating a ros workspace
 cd ~/ros_ws/src/ && git clone --recurse-submodules https://github.com/yyds623/ros-noetic-husky-ur3.git  #克隆代码仓
 
+cp ./src/models.zip ~/.gazebo && cd ~/.gazebo/&& unzip models.zip #导入Gazebo模型文件
+
+
 rosdepc install --from-path src --ignore-src -r -y  #安装基本依赖项
 cd ~/ros_ws && catkin_make   # 编译
 ```
