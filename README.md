@@ -63,8 +63,7 @@ source ~/ros_ws/devel/setup.bash && roscd husky_ur3_navigation/src && python fg.
 ------------------------------------------
 
 ### 5、其他小Tips
-
-
+### Tip-1
 ```bash
 
 # 夹爪打开
@@ -73,15 +72,22 @@ rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.0"
 # 夹爪关闭
 rostopic pub -1 /rh_p12_rn_position/command std_msgs/Float64 "data: 0.65"
 ```
-
+### Tip-2
 ```bash
+rospack plugins --attrib=plugin nav_core  #查询插件move_base自定义算法
 rosrun rqt_reconfigure rqt_reconfigure  #调整参数
 ```
 
 ![reconfigure 调整参数](https://github.com/user-attachments/assets/4b61d531-fe5b-4327-ae23-0a44e94fd983)
 
+### Tip-3
+```bash
+rosrun rqt_reconfigure rqt_reconfigure  #调整参数
+```
+![查询插件move_base自定义算法](https://github.com/user-attachments/assets/5f163e80-e4bd-4aa8-b3f7-1a3ca72a2d84)
 
 
+### Tip-4
 ```bash
 rosrun moveit_commander moveit_commander_cmdline.py  #查看机械臂的关节角度
 ```
